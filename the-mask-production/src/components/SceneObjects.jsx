@@ -1,66 +1,126 @@
 import { motion } from 'framer-motion'
 
-// HOME — Cinematic Camera with lens, shutter ring, record dot
 export function CameraObject(isEffectActive) {
   return (
     <motion.div
-      animate={{ y: [0, -8, 0] }}
+      animate={{ y: [0, -10, 0] }}
       transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-      className="relative"
-      style={{ width: 180, height: 130 }}   // ← smaller overall
+      className="relative flex items-center justify-center"
+      style={{ width: 160, height: 120 }}
     >
       {/* Camera body */}
-      <div className="absolute inset-0 rounded-xl bg-gradient-to-b from-zinc-700 to-zinc-900 shadow-[0_20px_60px_rgba(0,0,0,0.5)] border border-white/10" />
+      <div className="absolute inset-0 rounded-xl border border-white/10"
+        style={{ background: 'linear-gradient(160deg,#4a4a4a 0%,#2a2a2a 40%,#1a1a1a 100%)', boxShadow: '0 16px 48px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.08)' }}
+      />
 
-      {/* Top bump / viewfinder */}
-      <div className="absolute -top-4 left-5 w-14 h-5 rounded-t-lg bg-zinc-800 border border-white/10" />
+      {/* Grip texture */}
+      <div className="absolute right-0 top-1.5 bottom-1.5 w-5 rounded-r-xl border-l border-white/5"
+        style={{ background: 'linear-gradient(180deg,#333 0%,#1c1c1c 100%)' }}>
+        {[...Array(5)].map((_, i) => (
+          <div key={i} className="mx-0.5 mt-1.5 h-px rounded-full bg-white/5" />
+        ))}
+      </div>
+
+      {/* Top bump */}
+      <div className="absolute -top-3 left-4 w-10 h-4 rounded-t-md bg-zinc-800 border border-white/10 border-b-0" />
 
       {/* Flash */}
-      <div className="absolute -top-4 right-7 w-4 h-4 rounded-t-md bg-zinc-700 border border-white/10" />
+      <div className="absolute -top-2 right-7 w-3 h-3 rounded-t-sm bg-zinc-700 border border-white/08 border-b-0" />
 
-      {/* Lens housing — smaller */}
-      <div className="absolute left-5 top-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-zinc-950 border-4 border-zinc-700 shadow-[0_0_0_4px_rgba(255,255,255,0.04)] flex items-center justify-center">
-        {/* Outer rotating ring */}
+      {/* Hotshoe rail */}
+      <div className="absolute -top-1.5 left-8 right-12 h-0.5 bg-zinc-700 rounded-sm" />
+
+      {/* Strap lug left */}
+      <div className="absolute top-2 left-2 w-1 h-2 bg-zinc-700 rounded-sm border border-white/06" />
+
+      {/* Strap lug right */}
+      <div className="absolute top-2 right-6 w-1 h-2 bg-zinc-700 rounded-sm border border-white/06" />
+
+      {/* Lens glow */}
+      <motion.div
+        animate={{ opacity: [0.2, 0.6, 0.2] }}
+        transition={{ duration: 3, repeat: Infinity }}
+        className="absolute left-3 top-1/2 -translate-y-1/2 w-20 h-20 rounded-full blur-lg"
+        style={{ background: 'rgba(34,211,238,0.15)' }}
+      />
+
+      {/* Lens housing */}
+      <div className="absolute left-3 top-1/2 -translate-y-1/2 w-20 h-20 rounded-full flex items-center justify-center"
+        style={{ background: 'radial-gradient(circle at 35% 35%,#3a3a3a,#111)', border: '2px solid #333', boxShadow: '0 0 0 1px rgba(255,255,255,0.04), 0 6px 24px rgba(0,0,0,0.8)' }}>
+
+        {/* Outer dashed rotating ring */}
         <motion.div
           animate={{ rotate: 360 }}
-          transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-          className="absolute w-[72px] h-[72px] rounded-full border border-dashed border-cyan-400/30"
+          transition={{ duration: 18, repeat: Infinity, ease: 'linear' }}
+          className="absolute w-[72px] h-[72px] rounded-full border border-dashed border-cyan-400/25"
         />
+
+        {/* Inner counter-rotating ring */}
+        <motion.div
+          animate={{ rotate: -360 }}
+          transition={{ duration: 12, repeat: Infinity, ease: 'linear' }}
+          className="absolute w-14 h-14 rounded-full border border-white/06"
+        />
+
         {/* Lens glass */}
-        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-zinc-800 via-blue-950 to-zinc-900 border border-white/10 flex items-center justify-center shadow-[inset_0_0_14px_rgba(34,211,238,0.2)]">
-          <div className="w-5 h-5 rounded-full bg-gradient-to-br from-cyan-400/40 to-blue-600/40 border border-cyan-300/20" />
-          <div className="absolute top-2 left-3 w-2 h-1.5 rounded-full bg-white/25 rotate-[-30deg]" />
+        <div className="w-10 h-10 rounded-full flex items-center justify-center relative"
+          style={{ background: 'radial-gradient(circle at 30% 30%, #1a3a5c 0%, #0a0f1a 50%, #0d1a2e 100%)', border: '1px solid rgba(255,255,255,0.08)', boxShadow: 'inset 0 0 14px rgba(34,211,238,0.2)' }}>
+
+          {/* Inner lens core */}
+          <div className="w-5 h-5 rounded-full flex items-center justify-center"
+            style={{ background: 'radial-gradient(circle at 35% 35%, rgba(34,211,238,0.5), rgba(20,80,180,0.4))', border: '1px solid rgba(34,211,238,0.3)' }}>
+            <motion.div
+              animate={{ opacity: [0.6, 1, 0.6] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="w-2 h-2 rounded-full bg-cyan-400"
+              style={{ boxShadow: '0 0 6px rgba(34,211,238,0.9)' }}
+            />
+          </div>
+
+          {/* Lens shine */}
+          <div className="absolute top-1 left-2 w-2 h-1 rounded-full bg-white/20 -rotate-[35deg]" />
         </div>
       </div>
 
-      {/* Cyan glow behind lens — new attractive effect */}
-      <motion.div
-        animate={{ opacity: [0.3, 0.7, 0.3] }}
-        transition={{ duration: 2.5, repeat: Infinity }}
-        className="absolute left-5 top-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-cyan-500/20 blur-xl"
-      />
+      {/* Brand label */}
+      <div className="absolute bottom-2 right-8"
+        style={{ fontFamily: 'monospace', fontSize: '6px', color: 'rgba(255,255,255,0.15)', letterSpacing: '1.5px', textTransform: 'uppercase' }}>
+        MASK PRO
+      </div>
 
-      {/* Right side controls — scaled down */}
-      <div className="absolute right-4 top-1/2 -translate-y-1/2 flex flex-col gap-2">
-        {/* Shutter button */}
+      {/* Right side controls */}
+      <div className="absolute right-7 top-1/2 -translate-y-1/2 flex flex-col gap-1.5 items-center">
+        {/* Shutter */}
         <motion.div
           animate={{ scale: isEffectActive ? [1, 0.85, 1] : 1 }}
           transition={{ duration: 0.2 }}
-          className="w-6 h-6 rounded-full bg-gradient-to-b from-zinc-500 to-zinc-700 border border-white/10 shadow-[0_2px_6px_rgba(0,0,0,0.5)] flex items-center justify-center"
+          className="w-4 h-4 rounded-full flex items-center justify-center border border-white/10"
+          style={{ background: 'linear-gradient(180deg,#666,#333)', boxShadow: '0 2px 4px rgba(0,0,0,0.6)' }}
         >
-          <div className="w-3 h-3 rounded-full bg-zinc-400" />
+          <div className="w-2 h-2 rounded-full bg-zinc-400" />
         </motion.div>
+
         {/* Dial */}
-        <div className="w-6 h-6 rounded-full bg-zinc-800 border border-white/10 flex items-center justify-center">
-          <div className="w-0.5 h-3 rounded-full bg-zinc-500" />
+        <div className="w-4 h-4 rounded-full bg-zinc-800 border border-white/10 flex items-center justify-center">
+          <div className="w-px h-2.5 rounded-full bg-zinc-500" />
         </div>
+
         {/* Record dot */}
         <motion.div
-          animate={{ opacity: [1, 0.2, 1] }}
+          animate={{ opacity: [1, 0.15, 1] }}
           transition={{ duration: 1.2, repeat: Infinity }}
-          className="w-2.5 h-2.5 rounded-full bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.9)] self-center"
+          className="w-2 h-2 rounded-full bg-red-500"
+          style={{ boxShadow: '0 0 6px rgba(239,68,68,0.9)' }}
         />
       </div>
+
+      {/* Ground glow */}
+      <motion.div
+        animate={{ opacity: [0.2, 0.5, 0.2], scaleX: [1, 1.2, 1] }}
+        transition={{ duration: 5, repeat: Infinity }}
+        className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-16 h-2 rounded-full blur-md"
+        style={{ background: 'rgba(34,211,238,0.2)' }}
+      />
 
       {/* Flash burst */}
       <motion.div

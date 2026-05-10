@@ -118,7 +118,7 @@ export default function CinematicHero({
   initial={{ x: 0, y: 0 }}
   animate={{ x: 0, y: 0 }}
   transition={{ type: 'spring', stiffness: 120, damping: 18 }}
-  className="relative z-30 mx-auto mt-16 cursor-grab active:cursor-grabbing w-fit"
+ className="relative z-30 mx-auto mt-8 cursor-grab active:cursor-grabbing w-fit scale-75"
 >
   {object(isEffectActive)}
 </motion.div>
