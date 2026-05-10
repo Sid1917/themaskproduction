@@ -7,55 +7,66 @@ export function CameraObject(isEffectActive) {
       animate={{ y: [0, -8, 0] }}
       transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
       className="relative"
-      style={{ width: 260, height: 180 }}
+      style={{ width: 180, height: 130 }}   // ← smaller overall
     >
       {/* Camera body */}
-      <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-zinc-700 to-zinc-900 shadow-[0_30px_80px_rgba(0,0,0,0.6)] border border-white/10" />
+      <div className="absolute inset-0 rounded-xl bg-gradient-to-b from-zinc-700 to-zinc-900 shadow-[0_20px_60px_rgba(0,0,0,0.5)] border border-white/10" />
+
       {/* Top bump / viewfinder */}
-      <div className="absolute -top-5 left-8 w-20 h-6 rounded-t-xl bg-zinc-800 border border-white/10" />
+      <div className="absolute -top-4 left-5 w-14 h-5 rounded-t-lg bg-zinc-800 border border-white/10" />
+
       {/* Flash */}
-      <div className="absolute -top-5 right-10 w-6 h-5 rounded-t-lg bg-zinc-700 border border-white/10" />
-      {/* Lens housing */}
-      <div className="absolute left-8 top-1/2 -translate-y-1/2 w-28 h-28 rounded-full bg-zinc-950 border-4 border-zinc-700 shadow-[0_0_0_6px_rgba(255,255,255,0.04)] flex items-center justify-center">
-        {/* Outer ring */}
+      <div className="absolute -top-4 right-7 w-4 h-4 rounded-t-md bg-zinc-700 border border-white/10" />
+
+      {/* Lens housing — smaller */}
+      <div className="absolute left-5 top-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-zinc-950 border-4 border-zinc-700 shadow-[0_0_0_4px_rgba(255,255,255,0.04)] flex items-center justify-center">
+        {/* Outer rotating ring */}
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-          className="absolute w-24 h-24 rounded-full border border-dashed border-cyan-400/20"
+          className="absolute w-[72px] h-[72px] rounded-full border border-dashed border-cyan-400/30"
         />
         {/* Lens glass */}
-        <div className="w-16 h-16 rounded-full bg-gradient-to-br from-zinc-800 via-blue-950 to-zinc-900 border border-white/10 flex items-center justify-center shadow-[inset_0_0_20px_rgba(34,211,238,0.15)]">
-          <div className="w-6 h-6 rounded-full bg-gradient-to-br from-cyan-400/30 to-blue-600/30 border border-cyan-300/20" />
-          {/* Lens reflection */}
-          <div className="absolute top-3 left-4 w-3 h-2 rounded-full bg-white/20 rotate-[-30deg]" />
+        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-zinc-800 via-blue-950 to-zinc-900 border border-white/10 flex items-center justify-center shadow-[inset_0_0_14px_rgba(34,211,238,0.2)]">
+          <div className="w-5 h-5 rounded-full bg-gradient-to-br from-cyan-400/40 to-blue-600/40 border border-cyan-300/20" />
+          <div className="absolute top-2 left-3 w-2 h-1.5 rounded-full bg-white/25 rotate-[-30deg]" />
         </div>
       </div>
-      {/* Right side controls */}
-      <div className="absolute right-6 top-1/2 -translate-y-1/2 flex flex-col gap-3">
+
+      {/* Cyan glow behind lens — new attractive effect */}
+      <motion.div
+        animate={{ opacity: [0.3, 0.7, 0.3] }}
+        transition={{ duration: 2.5, repeat: Infinity }}
+        className="absolute left-5 top-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-cyan-500/20 blur-xl"
+      />
+
+      {/* Right side controls — scaled down */}
+      <div className="absolute right-4 top-1/2 -translate-y-1/2 flex flex-col gap-2">
         {/* Shutter button */}
         <motion.div
           animate={{ scale: isEffectActive ? [1, 0.85, 1] : 1 }}
           transition={{ duration: 0.2 }}
-          className="w-8 h-8 rounded-full bg-gradient-to-b from-zinc-500 to-zinc-700 border border-white/10 shadow-[0_2px_8px_rgba(0,0,0,0.5)] flex items-center justify-center"
+          className="w-6 h-6 rounded-full bg-gradient-to-b from-zinc-500 to-zinc-700 border border-white/10 shadow-[0_2px_6px_rgba(0,0,0,0.5)] flex items-center justify-center"
         >
-          <div className="w-4 h-4 rounded-full bg-zinc-400" />
+          <div className="w-3 h-3 rounded-full bg-zinc-400" />
         </motion.div>
         {/* Dial */}
-        <div className="w-8 h-8 rounded-full bg-zinc-800 border border-white/10 flex items-center justify-center">
-          <div className="w-1 h-4 rounded-full bg-zinc-500" />
+        <div className="w-6 h-6 rounded-full bg-zinc-800 border border-white/10 flex items-center justify-center">
+          <div className="w-0.5 h-3 rounded-full bg-zinc-500" />
         </div>
         {/* Record dot */}
         <motion.div
           animate={{ opacity: [1, 0.2, 1] }}
           transition={{ duration: 1.2, repeat: Infinity }}
-          className="w-3 h-3 rounded-full bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.8)] self-center"
+          className="w-2.5 h-2.5 rounded-full bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.9)] self-center"
         />
       </div>
-      {/* Flash burst on effect */}
+
+      {/* Flash burst */}
       <motion.div
         animate={{ opacity: isEffectActive ? [0, 0.9, 0] : 0, scale: isEffectActive ? [0.5, 2, 3] : 0.5 }}
         transition={{ duration: 0.4 }}
-        className="pointer-events-none absolute inset-0 rounded-2xl bg-white blur-2xl"
+        className="pointer-events-none absolute inset-0 rounded-xl bg-white blur-2xl"
       />
     </motion.div>
   )
