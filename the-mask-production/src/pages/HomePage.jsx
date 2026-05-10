@@ -4,12 +4,12 @@ import { HOME_STAGES } from '../constants/pages'
 
 // Replace these with your own image/video poster paths e.g. '/images/stage-1.jpg'
 const HOME_IMAGES = [
-  'public/images/home1.jpeg', // camera / cinematic
-  'public/images/home2.jpeg', // film moment
-  'public/images/home2.jpeg', // film moment
-  'public/images/home3.jpeg', // editing suite
-  'public/images/home4.jpeg', // frame / lens
- 'public/images/home4.jpeg',// story / portrait
+  '/images/home1.jpeg', // camera / cinematic
+  '/images/home2.jpeg', // film moment
+  '/images/home2.jpeg', // film moment
+  '/images/home3.jpeg', // editing suite
+  '/images/home4.jpeg', // frame / lens
+ '/images/home4.jpeg',// story / portrait
 ]
 
 export default function HomePage() {
