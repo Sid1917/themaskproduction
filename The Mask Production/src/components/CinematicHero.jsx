@@ -36,7 +36,7 @@ export default function CinematicHero({
   }
 
   return (
-    <section className="relative min-h-screen overflow-visible bg-black text-white">
+    <section className="relative min-h-screen overflow-hidden bg-black text-white">
       <AnimatePresence>
         {isEffectActive && (
           <motion.div
