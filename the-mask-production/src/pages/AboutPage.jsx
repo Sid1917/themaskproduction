@@ -1,5 +1,5 @@
-import CinematicHero from '../components/CinematicHero'
-import { AboutObject } from '../components/SceneObjects'
+import CinematicHero from '../components/cinematic/CinematicHero'
+import { AboutObject } from '../components/cinematic/SceneObjects'
 import { ABOUT_STAGES } from '../constants/pages'
 
 const ABOUT_IMAGES = [

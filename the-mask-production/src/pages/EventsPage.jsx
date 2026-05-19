@@ -1,5 +1,5 @@
-import CinematicHero from '../components/CinematicHero'
-import { EventsObject } from '../components/SceneObjects'
+import CinematicHero from '../components/cinematic/CinematicHero'
+import { EventsObject } from '../components/cinematic/SceneObjects'
 import { EVENTS_STAGES } from '../constants/pages'
 
 const EVENTS_IMAGES = [

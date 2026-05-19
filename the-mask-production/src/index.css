@@ -2,7 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/* rest of your CSS below */
+/* Global layout defaults for cinematic responsiveness */
+html {
+  scroll-behavior: smooth;
+}
+
 html, body, #root {
   margin: 0;
   padding: 0;
