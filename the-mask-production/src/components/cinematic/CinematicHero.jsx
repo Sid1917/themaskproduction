@@ -24,13 +24,13 @@ export default function CinematicHero({
   const activeImage = images?.[currentStage] ?? null
 
   // Device-specific drag constraints
-  const dragConfig = {
-    mobile: { left: -300, right: 300, top: -200, bottom: 200 },
-    tablet: { left: -400, right: 400, top: -250, bottom: 250 },
-    desktop: { left: -500, right: 500, top: -300, bottom: 300 },
-  }
+   // const dragConfig = {
+    //mobile: { left: -300, right: 300, top: -200, bottom: 200 },
+    //tablet: { left: -400, right: 400, top: -250, bottom: 250 },
+    //desktop: { left: -500, right: 500, top: -300, bottom: 300 },
+  //} 
 
-  const constraints = dragConfig[deviceType]
+  //const constraints = dragConfig[deviceType]
 
   useEffect(() => {
     return () => {
@@ -134,16 +134,9 @@ export default function CinematicHero({
           )}
 
        <motion.div
-  drag
-  dragConstraints={constraints}
-  dragElastic={0.04}
-  dragMomentum={false}
-  whileDrag={{ scale: 1.04 }}
-  onDragEnd={triggerEffect}
-  initial={{ x: 0, y: 0 }}
-  animate={{ x: 0, y: 0 }}
-  transition={{ type: 'spring', stiffness: 120, damping: 18 }}
-  className="relative z-30 mx-auto mt-8 w-fit overflow-visible cursor-grab active:cursor-grabbing sm:mt-10"
+  onClick={triggerEffect}
+  whileTap={{ scale: 0.95 }}
+  className="relative z-30 mx-auto mt-8 w-fit overflow-visible cursor-pointer sm:mt-10"
 >
   {object(isEffectActive)}
 </motion.div>
