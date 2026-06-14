@@ -10,9 +10,7 @@ import Footer from '../components/home/Footer'
 const HOME_IMAGES = [
   '/images/home1.jpeg',
   '/images/home2.jpeg',
-  '/images/home2.jpeg',
   '/images/home3.jpeg',
-  '/images/home4.jpeg',
   '/images/home4.jpeg',
 ]
 
@@ -22,14 +20,14 @@ export default function HomePage() {
       <CinematicHero
         stages={HOME_STAGES}
         images={HOME_IMAGES}
-        instruction="Flash To Transform"
+        //instruction="Flash To Transform"
         description="Interactive cinematic storytelling powered by motion typography, immersive visuals, and premium digital experiences."
         background="bg-[radial-gradient(circle_at_top_left,rgba(139,92,246,0.18),transparent_35%),radial-gradient(circle_at_bottom_right,rgba(59,130,246,0.14),transparent_35%)]"
         glow="bg-cyan-400/10"
         effect="bg-white"
         object={CameraObject}
-        panelTitle="CAPTURE"
-        panelSubtitle="Cinematic Visual Storytelling"
+        //panelTitle="CAPTURE"
+        //panelSubtitle="Cinematic Visual Storytelling"
       />
 
       <OurWorkSection />

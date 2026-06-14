@@ -8,7 +8,7 @@ export default function CinematicStageTitle({ title, gradient }) {
 
   const preparedText = useMemo(() => {
     try {
-      return prepare(title, '900 160px Inter')
+      return prepare(title.replace(/\n/g, ' '), '900 96px Inter')
     } catch {
       return null
     }
@@ -17,24 +17,25 @@ export default function CinematicStageTitle({ title, gradient }) {
   const textLayout = useMemo(() => {
     if (!preparedText) return null
     try {
-      return layout(preparedText, 1400, { lineHeight: 0.9, align: 'center' })
+      return layout(preparedText, 1000, { lineHeight: 0.9, align: 'center' })
     } catch {
       return null
     }
   }, [preparedText])
 
-  const glyphLayout = useMemo(() => {
-    if (!textLayout || !Array.isArray(textLayout.lines)) return []
-    return textLayout.lines.map((line, lineIndex) => ({
-      lineIndex,
-      glyphs: line.text.split('').map((glyph, glyphIndex) => ({
-        glyph,
-        glyphIndex,
-        x: glyphIndex * 60,
-        y: lineIndex * 140,
-      })),
-    }))
-  }, [textLayout])
+ const glyphLayout = useMemo(() => {
+  const lines = title.split('\n')
+
+  return lines.map((line, lineIndex) => ({
+    lineIndex,
+    glyphs: line.split('').map((glyph, glyphIndex) => ({
+      glyph,
+      glyphIndex,
+      x: glyphIndex * 45,
+      y: lineIndex * 120,
+    })),
+  }))
+}, [title])
 
   return (
     <div
@@ -75,10 +76,10 @@ export default function CinematicStageTitle({ title, gradient }) {
               }}
               className="relative flex flex-wrap items-center justify-center"
               style={{
-                fontSize: 'clamp(3.5rem, 9vw, 9rem)',
+                fontSize: 'clamp(2.0rem, 7vw, 4rem)',
                 fontWeight: 900,
-                lineHeight: 0.9,
-                letterSpacing: '-0.08em',
+                lineHeight: 1,
+                letterSpacing: '0.02em',
                 textTransform: 'uppercase',
               }}
             >

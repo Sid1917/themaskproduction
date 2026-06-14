@@ -6,7 +6,7 @@ import CinematicStageTitle from './CinematicStageTitle'
 export default function CinematicHero({
   stages,
   images,
-  instruction,
+  //instruction,
   description,
   background,
   glow,
@@ -91,7 +91,7 @@ export default function CinematicHero({
 
       <div className="relative z-20 flex min-h-[100svh] items-center justify-center overflow-visible px-4 pt-24 sm:px-6 sm:pt-28 lg:px-12">
         <div className="mx-auto w-full max-w-5xl text-center sm:max-w-6xl">
-          <motion.div
+        {/* <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
@@ -100,7 +100,7 @@ export default function CinematicHero({
             <div className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[10px] uppercase tracking-[0.35em] text-white/60 backdrop-blur-xl sm:px-7 sm:py-3 sm:text-sm">
               {instruction}
             </div>
-          </motion.div>
+          </motion.div> */}
 
           <CinematicStageTitle title={activeTitle} gradient="from-white via-white to-white/20" />
 
