@@ -9,7 +9,7 @@ const works = [
     year: '2024',
     wide: true,
     image: '/images/home1.jpeg',
-    video: '/videos/video1.mp4',
+    video: '/videos/wedding_video1.mp4',
   },
   {
     category: 'Aerial',
@@ -33,7 +33,7 @@ const works = [
     location: 'Goa',
     year: '2025',
     wide: true,
-    image: '/images/home4.jpeg',
+    image: '/images/govt1.jpeg',
   },
 ]
 

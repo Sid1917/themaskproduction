@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef ,useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 
 const services = [
@@ -15,7 +15,8 @@ const services = [
     subtitle: 'Your world from above',
     desc: 'Licensed aerial coverage that transforms ordinary venues into cinematic landscapes. Sweeping reveals, golden hour aerials, and crowd shots that give your story a scale nothing else can.',
     offerings: ['4K Aerial', 'Licensed Pilot', 'Venue Reveals', 'Crowd Aerials'],
-    image: '/images/home2.jpeg',
+    image: '/images/drone_cover.jpeg',
+    video: '/videos/drone_home.mp4',
     accent: '#a87d3a',
   },
   {
@@ -23,7 +24,8 @@ const services = [
     subtitle: 'Every moment, preserved',
     desc: 'Corporate galas, product launches, TEDx talks, and concerts — captured with multi-camera precision and the same cinematic care we bring to every personal story.',
     offerings: ['Multi-Camera', 'Corporate Events', 'Conferences', 'Live Concerts'],
-    image: '/images/home3.jpeg',
+    image: '/images/home2_g20.jpeg',
+    video: '/videos/corporate_g20.mp4',
     accent: '#b8874a',
   },
   {
@@ -38,12 +40,27 @@ const services = [
 
 function ServiceItem({ service, index }) {
   const ref = useRef(null)
+  const videoRef = useRef(null)
+  const [isPlaying, setIsPlaying] = useState(false)
   const inView = useInView(ref, { once: true, margin: '-60px' })
   const isEven = index % 2 === 0
 
   return (
     <motion.div
-      ref={ref}
+  ref={ref}
+  onHoverStart={() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {})
+      setIsPlaying(true)
+    }
+  }}
+  onHoverEnd={() => {
+    if (videoRef.current) {
+      videoRef.current.pause()
+      videoRef.current.currentTime = 0
+      setIsPlaying(false)
+    }
+  }}
       initial={{ opacity: 0, y: 48 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
@@ -51,15 +68,29 @@ function ServiceItem({ service, index }) {
         isEven ? 'sm:flex-row' : 'sm:flex-row-reverse'
       } items-center border-b border-white/[0.06] pb-16 sm:pb-20 mb-16 sm:mb-20 last:border-0 last:mb-0 last:pb-0`}
     >
-      {/* Image */}
+  {/* Image / Video */}
       <div className="w-full sm:w-1/2 relative overflow-hidden rounded-xl aspect-[4/3] flex-shrink-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-stone-800 via-stone-900 to-black" />
+
         <img
           src={service.image}
           alt={service.title}
           className="absolute inset-0 w-full h-full object-cover"
           onError={(e) => { e.target.style.display = 'none' }}
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-stone-800 via-stone-900 to-black" />
+
+        {service.video && (
+          <video
+            ref={videoRef}
+            loop
+            playsInline
+            preload="metadata"
+            onEnded={() => setIsPlaying(false)}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${isPlaying ? 'opacity-100' : 'opacity-0'}`}
+          >
+            <source src={service.video} type="video/mp4" />
+          </video>
+        )}
         {/* Film grain */}
         <div
           className="absolute inset-0 opacity-[0.25] mix-blend-overlay pointer-events-none"

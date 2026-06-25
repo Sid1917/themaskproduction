@@ -9,11 +9,24 @@ import Footer from '../components/home/Footer'
 
 const HOME_IMAGES = [
   '/images/home1.jpeg',
-  '/images/home2.jpeg',
+  '/images/home2_g20.jpeg',
   '/images/home3.jpeg',
   '/images/home4.jpeg',
 ]
-
+const works = [
+  {
+    image: '/images/home1.jpeg',
+  },
+  {
+    image: '/images/home2_g20.jpeg',
+  },
+  {
+    image: '/images/home3.jpeg',
+  },
+  {
+    image: '/images/govt_event.jpeg',
+  },
+]
 export default function HomePage() {
   return (
     <>
