@@ -1,31 +1,31 @@
-import { useRef , useState } from 'react'
+import { useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 
 const works = [
   {
     category: 'Wedding Film',
-    title: 'Aryan & Priya',
-    location: 'Udaipur, Rajasthan',
-    year: '2024',
+    title: 'Sushant & Tejasvi',
+    location: 'Destination Wedding, Attasa',
+    year: '2025',
     wide: true,
     image: '/images/home1.jpeg',
     video: '/videos/wedding_video1.mp4',
   },
   {
-    category: 'Aerial',
+    category: 'Pre-Wedding Film',
     title: 'Golden Hour Over Ghats',
-    location: 'Varanasi, UP',
-    year: '2024',
+    location: 'Urmudi Dam, Maharashtra',
+    year: '2025',
     wide: false,
     image: '/images/home2.jpeg',
   },
   {
-    category: 'Corporate Event',
-    title: 'TEDx Mumbai',
-    location: 'NSCI Dome, Mumbai',
+    category: 'Drone Shot ',
+    title: 'GOVT Work',
+    location: 'Gateway of India, Mumbai',
     year: '2025',
     wide: false,
-    image: '/images/home3.jpeg',
+    image: '/images/gateway.jpeg',
   },
   {
     category: 'Wedding Film',
@@ -43,30 +43,20 @@ function WorkCard({ work, index }) {
   const [isPlaying, setIsPlaying] = useState(false)
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
-  const handlePlayToggle = (e) => {
-    e.stopPropagation()
-    if (!videoRef.current) return
-    if (isPlaying) {
-      videoRef.current.pause()
-      setIsPlaying(false)
-    } else {
-      videoRef.current.play().catch(() => {})
-      setIsPlaying(true)
-    }
-  }
-
   return (
     <motion.div
       ref={ref}
       onHoverStart={() => {
         if (videoRef.current) {
           videoRef.current.play().catch(() => {})
+          setIsPlaying(true)
         }
       }}
       onHoverEnd={() => {
         if (videoRef.current) {
           videoRef.current.pause()
           videoRef.current.currentTime = 0
+          setIsPlaying(false)
         }
       }}
       initial={{ opacity: 0, y: 56 }}
@@ -74,15 +64,20 @@ function WorkCard({ work, index }) {
       transition={{ duration: 0.9, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
       className={`group relative overflow-hidden cursor-pointer ${work.wide ? 'md:col-span-2' : 'md:col-span-1'}`}
     >
-     <div className={`relative overflow-hidden ${work.wide ? 'aspect-[16/9]' : 'aspect-[4/5]'}`}>
-        {/* Warm fallback */}
+      <div className={`relative overflow-hidden ${work.wide ? 'aspect-[16/9]' : 'aspect-[4/5]'}`}>
+
+        {/* 1. Background gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-stone-800 via-stone-900 to-black" />
+
+        {/* 2. Image */}
         <img
           src={work.image}
           alt={work.title}
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
           onError={(e) => { e.target.style.display = 'none' }}
         />
+
+        {/* 3. Video — fades in on hover */}
         {work.video && (
           <video
             ref={videoRef}
@@ -90,48 +85,34 @@ function WorkCard({ work, index }) {
             playsInline
             preload="metadata"
             onEnded={() => setIsPlaying(false)}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${isPlaying ? 'opacity-100' : 'opacity-0'}`}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+              isPlaying ? 'opacity-100' : 'opacity-0'
+            }`}
           >
             <source src={work.video} type="video/mp4" />
           </video>
         )}
-        {/* Film grain */}
-        <div
-          className="absolute inset-0 opacity-[0.3] mix-blend-overlay pointer-events-none"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-            backgroundSize: '180px 180px',
-          }}
-        />
-        {/* Vignette */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(0,0,0,0.65)_100%)]" />
-        {/* Bottom fade */}
+
+        {/* 4. Overlays */}
+        <div className="absolute inset-0 bg-amber-900/10 mix-blend-multiply" />
         <div className="absolute bottom-0 left-0 right-0 h-2/3 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
 
-        {/* Play button on hover */}
-        {/* Play / pause button */}
-        {work.video && (
+        {/* 5. Play button */}
+        <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 z-10 ${
+          isPlaying ? 'opacity-0' : 'opacity-0 group-hover:opacity-100'
+        }`}>
           <div
-            onClick={handlePlayToggle}
-            className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 ${isPlaying ? 'opacity-0 group-hover:opacity-100' : 'opacity-0 group-hover:opacity-100'}`}
+            className="w-16 h-16 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center border"
+            style={{ borderColor: 'rgba(201,150,58,0.4)' }}
           >
-            <div className="w-16 h-16 rounded-full border border-amber-300/40 bg-black/30 backdrop-blur-sm flex items-center justify-center">
-              {isPlaying ? (
-                <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
-                  <rect x="4" y="3" width="4" height="14" fill="#fbbf24" fillOpacity="0.9" />
-                  <rect x="12" y="3" width="4" height="14" fill="#fbbf24" fillOpacity="0.9" />
-                </svg>
-              ) : (
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path d="M7 4.5l10 5.5-10 5.5V4.5z" fill="#fbbf24" fillOpacity="0.9" />
-                </svg>
-              )}
-            </div>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M7 4.5l10 5.5-10 5.5V4.5z" fill="#c9963a" fillOpacity="0.9" />
+            </svg>
           </div>
-        )}
+        </div>
 
-        {/* Info */}
-        <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6">
+        {/* 6. Text */}
+        <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 z-10">
           <div className="text-[9px] uppercase tracking-[0.4em] mb-2 font-medium" style={{ color: '#c9963a' }}>
             {work.category}
           </div>
@@ -143,6 +124,7 @@ function WorkCard({ work, index }) {
             <span className="text-xs text-white/25 font-mono flex-shrink-0 mb-0.5">{work.year}</span>
           </div>
         </div>
+
       </div>
     </motion.div>
   )

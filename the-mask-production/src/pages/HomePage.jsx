@@ -8,8 +8,8 @@ import WhyUsSection from '../components/home/WhyUsSection'
 import Footer from '../components/home/Footer'
 
 const HOME_IMAGES = [
-  '/images/home1.jpeg',
   '/images/home2_g20.jpeg',
+  '/images/home1.jpeg',
   '/images/home3.jpeg',
   '/images/home4.jpeg',
 ]

@@ -89,8 +89,8 @@ export default function CinematicHero({
         className={`absolute left-1/2 top-1/2 h-[32rem] w-[32rem] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[120px] ${glow} sm:h-[40rem] sm:w-[40rem] sm:blur-[140px] lg:h-[44rem] lg:w-[44rem] lg:blur-[160px]`}
       />
 
-      <div className="relative z-20 flex min-h-[100svh] items-center justify-center overflow-visible px-4 pt-24 sm:px-6 sm:pt-28 lg:px-12">
-        <div className="mx-auto w-full max-w-5xl text-center sm:max-w-6xl">
+      <div className="relative z-20 flex min-h-[100svh] items-center justify-center overflow-visible px-4 pt-24 sm:px-6 lg:px-12">
+        <div className="mx-auto w-full max-w-5xl text-center sm:max-w-6xl flex flex-col items-center justify-center min-h-[60vh]">
         {/* <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

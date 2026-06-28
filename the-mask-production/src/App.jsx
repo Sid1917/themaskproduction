@@ -12,9 +12,9 @@ export default function App() {
       <Layout>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/drone" element={<DronePage />} />
-          <Route path="/wedding" element={<WeddingPage />} />
           <Route path="/events" element={<EventsPage />} />
+          <Route path="/wedding" element={<WeddingPage />} />
+          <Route path="/drone" element={<DronePage />} />
           <Route path="/about" element={<AboutPage />} />
         </Routes>
       </Layout>

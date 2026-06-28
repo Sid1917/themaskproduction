@@ -10,11 +10,11 @@ import WeddingPricingSection from '../components/wedding/WeddingPricingSection'
 import Footer from '../components/home/Footer'
 
 const WEDDING_IMAGES = [
-  'https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&q=80',
-  'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1600&q=80',
-  'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=1600&q=80',
-  'https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=1600&q=80',
-  'https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=1600&q=80',
+ '/images/wedding2.jpeg',
+  '/images/wedding4.jpeg',
+  '/images/wedding3.jpeg',
+  '/images/wedding1.jpeg',
+  '/images/wedding3.jpeg',
 ]
 
 export default function WeddingPage() {
@@ -29,8 +29,8 @@ export default function WeddingPage() {
         glow="bg-amber-200/10"
         effect="bg-amber-100/20"
         object={WeddingObject}
-        panelTitle="MEMORIES"
-        panelSubtitle="Cinematic Love Stories"
+        // panelTitle="MEMORIES"
+        // panelSubtitle="Cinematic Love Stories"
       />
 
       <WeddingStatsBar />

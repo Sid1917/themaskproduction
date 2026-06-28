@@ -33,7 +33,8 @@ const services = [
     subtitle: 'Stories that move people',
     desc: 'Short films for brands that believe their story deserves more than a brochure. Concept to colour grade — crafted to connect, not just convert.',
     offerings: ['Brand Stories', 'Social Reels', 'Product Films', 'Ad Films'],
-    image: '/images/home4.jpeg',
+    image: '/images/brand_image2.png',
+    video: '/videos/BRAND99_AV_video2.mp4',
     accent: '#c9963a',
   },
 ]

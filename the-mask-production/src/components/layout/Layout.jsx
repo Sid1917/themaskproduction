@@ -4,9 +4,9 @@ import { AnimatePresence, motion } from 'framer-motion'
 
 const navLinks = [
   { href: '/',        label: 'Home',    sub: 'Cinematic storytelling' },
-  { href: '/drone',   label: 'Drone',   sub: 'Aerial perspectives'    },
-  { href: '/wedding', label: 'Wedding', sub: 'Every moment, forever'  },
   { href: '/events',  label: 'Events',  sub: 'Live & corporate'       },
+  { href: '/wedding', label: 'Wedding', sub: 'Every moment, forever'  },
+  { href: '/drone',   label: 'Drone',   sub: 'Aerial perspectives'    },
   { href: '/about',   label: 'About',   sub: 'Our story & team'       },
 ]
 
