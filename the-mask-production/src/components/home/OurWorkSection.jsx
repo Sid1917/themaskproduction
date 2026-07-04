@@ -43,22 +43,24 @@ function WorkCard({ work, index }) {
   const [isPlaying, setIsPlaying] = useState(false)
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
+  const handlePlayClick = (e) => {
+    e.stopPropagation()
+    if (!videoRef.current) return
+    videoRef.current.play().catch(() => {})
+    setIsPlaying(true)
+  }
+
+  const handlePauseClick = (e) => {
+    e.stopPropagation()
+    if (!videoRef.current) return
+    videoRef.current.pause()
+    videoRef.current.currentTime = 0
+    setIsPlaying(false)
+  }
+
   return (
     <motion.div
       ref={ref}
-      onHoverStart={() => {
-        if (videoRef.current) {
-          videoRef.current.play().catch(() => {})
-          setIsPlaying(true)
-        }
-      }}
-      onHoverEnd={() => {
-        if (videoRef.current) {
-          videoRef.current.pause()
-          videoRef.current.currentTime = 0
-          setIsPlaying(false)
-        }
-      }}
       initial={{ opacity: 0, y: 56 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.9, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
@@ -77,7 +79,7 @@ function WorkCard({ work, index }) {
           onError={(e) => { e.target.style.display = 'none' }}
         />
 
-        {/* 3. Video — fades in on hover */}
+        {/* 3. Video — plays on click, not hover */}
         {work.video && (
           <video
             ref={videoRef}
@@ -97,19 +99,30 @@ function WorkCard({ work, index }) {
         <div className="absolute inset-0 bg-amber-900/10 mix-blend-multiply" />
         <div className="absolute bottom-0 left-0 right-0 h-2/3 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
 
-        {/* 5. Play button */}
-        <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 z-10 ${
-          isPlaying ? 'opacity-0' : 'opacity-0 group-hover:opacity-100'
-        }`}>
-          <div
-            className="w-16 h-16 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center border"
-            style={{ borderColor: 'rgba(201,150,58,0.4)' }}
+        {/* 5. Play / Pause button — always visible, swaps icon based on state */}
+        {work.video && (
+          <button
+            onClick={isPlaying ? handlePauseClick : handlePlayClick}
+            aria-label={isPlaying ? `Pause video for ${work.title}` : `Play video for ${work.title}`}
+            className="absolute inset-0 flex items-center justify-center z-10"
           >
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M7 4.5l10 5.5-10 5.5V4.5z" fill="#c9963a" fillOpacity="0.9" />
-            </svg>
-          </div>
-        </div>
+            <div
+              className="w-16 h-16 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center border transition-transform duration-300 hover:scale-110"
+              style={{ borderColor: 'rgba(201,150,58,0.4)' }}
+            >
+              {isPlaying ? (
+                <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+                  <rect x="4" y="3" width="4" height="14" rx="1" fill="#c9963a" fillOpacity="0.9" />
+                  <rect x="12" y="3" width="4" height="14" rx="1" fill="#c9963a" fillOpacity="0.9" />
+                </svg>
+              ) : (
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M7 4.5l10 5.5-10 5.5V4.5z" fill="#c9963a" fillOpacity="0.9" />
+                </svg>
+              )}
+            </div>
+          </button>
+        )}
 
         {/* 6. Text */}
         <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 z-10">

@@ -10,11 +10,11 @@ import EventsPricingSection from '../components/events/EventsPricingSection'
 import Footer from '../components/home/Footer'
 
 const EVENTS_IMAGES = [
-  'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1600&q=80',
-  'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1600&q=80',
-  'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=1600&q=80',
-  'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=1600&q=80',
-  'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=1600&q=80',
+  '/images/commercial_1.jpeg',
+  '/images/commercial_2.jpeg',
+  '/images/commercial_3.jpeg',
+  '/images/commercial_4.jpeg',
+  '/images/commercial_5.jpeg',
 ]
 
 export default function EventsPage() {
@@ -29,8 +29,6 @@ export default function EventsPage() {
         glow="bg-fuchsia-400/10"
         effect="bg-fuchsia-200/20"
         object={EventsObject}
-        panelTitle="LIVE"
-        panelSubtitle="Cinematic Event Experiences"
       />
 
       <EventsStatsBar />

@@ -49,7 +49,7 @@ function ReelCard({ reel, index }) {
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
 
-      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
         <div className="w-14 h-14 rounded-full border border-white/30 bg-black/40 backdrop-blur-sm flex items-center justify-center">
           <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
             <path d="M7 4.5l10 5.5-10 5.5V4.5z" fill="white" fillOpacity="0.9" />

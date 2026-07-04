@@ -20,17 +20,8 @@ export default function CinematicHero({
   const timeoutRef = useRef(null)
   const deviceType = useDeviceType()
 
-  const activeTitle = useMemo(() => stages[currentStage], [currentStage, stages])
-  const activeImage = images?.[currentStage] ?? null
-
-  // Device-specific drag constraints
-   // const dragConfig = {
-    //mobile: { left: -300, right: 300, top: -200, bottom: 200 },
-    //tablet: { left: -400, right: 400, top: -250, bottom: 250 },
-    //desktop: { left: -500, right: 500, top: -300, bottom: 300 },
-  //} 
-
-  //const constraints = dragConfig[deviceType]
+  const activeTitle = useMemo(() => stages[currentStage % stages.length], [currentStage, stages])
+  const activeImage = images?.[currentStage % (images?.length || 1)] ?? null
 
   useEffect(() => {
     return () => {
@@ -40,7 +31,8 @@ export default function CinematicHero({
 
   const triggerEffect = () => {
     setIsEffectActive(true)
-    setCurrentStage((prev) => (prev + 1) % stages.length)
+  const totalFrames = Math.max(stages.length, images?.length || 0)
+  setCurrentStage((prev) => (prev + 1) % totalFrames)
 
     if (timeoutRef.current) clearTimeout(timeoutRef.current)
     timeoutRef.current = setTimeout(() => setIsEffectActive(false), 550)
@@ -91,16 +83,6 @@ export default function CinematicHero({
 
       <div className="relative z-20 flex min-h-[100svh] items-center justify-center overflow-visible px-4 pt-24 sm:px-6 lg:px-12">
         <div className="mx-auto w-full max-w-5xl text-center sm:max-w-6xl flex flex-col items-center justify-center min-h-[60vh]">
-        {/* <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            className="mb-6 sm:mb-8"
-          >
-            <div className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[10px] uppercase tracking-[0.35em] text-white/60 backdrop-blur-xl sm:px-7 sm:py-3 sm:text-sm">
-              {instruction}
-            </div>
-          </motion.div> */}
 
           <CinematicStageTitle title={activeTitle} gradient="from-white via-white to-white/20" />
 
@@ -133,13 +115,13 @@ export default function CinematicHero({
             </motion.div>
           )}
 
-       <motion.div
-  onClick={triggerEffect}
-  whileTap={{ scale: 0.95 }}
-  className="relative z-30 mx-auto mt-8 w-fit overflow-visible cursor-pointer sm:mt-10"
->
-  {object(isEffectActive)}
-</motion.div>
+          <motion.div
+            onClick={triggerEffect}
+            whileTap={{ scale: 0.95 }}
+            className="relative z-30 mx-auto mt-8 w-fit overflow-visible cursor-pointer sm:mt-10"
+          >
+            {object(isEffectActive)}
+          </motion.div>
         </div>
       </div>
     </section>

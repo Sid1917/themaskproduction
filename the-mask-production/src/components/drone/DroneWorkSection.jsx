@@ -74,7 +74,7 @@ function WorkCard({ work, index }) {
           ↑ {work.altitude}
         </div>
 
-        {/* Play button */}
+         {/* Play button */}
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
           <div className="w-16 h-16 rounded-full border border-cyan-400/40 bg-black/30 backdrop-blur-sm flex items-center justify-center">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">

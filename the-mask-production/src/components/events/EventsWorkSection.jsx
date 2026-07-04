@@ -9,7 +9,7 @@ const works = [
     year: '2025',
     wide: true,
     image: '/images/event1.png',
-    video: '/videos/event_video1.mp4',
+    video: '/videos/corporate_g20.mp4',
     duration: '5 min film',
   },
   {
@@ -115,6 +115,21 @@ function WorkCard({ work, index }) {
   const [isPlaying, setIsPlaying] = useState(false)
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
+  const handlePlayClick = (e) => {
+    e.stopPropagation()
+    if (!videoRef.current) return
+    videoRef.current.play().catch(() => {})
+    setIsPlaying(true)
+  }
+
+  const handlePauseClick = (e) => {
+    e.stopPropagation()
+    if (!videoRef.current) return
+    videoRef.current.pause()
+    videoRef.current.currentTime = 0
+    setIsPlaying(false)
+  }
+
   return (
     <motion.div
       ref={ref}
@@ -122,19 +137,6 @@ function WorkCard({ work, index }) {
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.9, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
       className={`group relative overflow-hidden cursor-pointer ${work.wide ? 'md:col-span-2' : 'md:col-span-1'}`}
-      onHoverStart={() => {
-        if (videoRef.current) {
-          videoRef.current.play().catch(() => {})
-          setIsPlaying(true)
-        }
-      }}
-      onHoverEnd={() => {
-        if (videoRef.current) {
-          videoRef.current.pause()
-          videoRef.current.currentTime = 0
-          setIsPlaying(false)
-        }
-      }}
     >
       <div className={`relative overflow-hidden ${work.wide ? 'aspect-[16/9]' : 'aspect-[4/5]'}`}>
         <div className="absolute inset-0 bg-gradient-to-br from-stone-800 via-stone-900 to-black" />
@@ -175,18 +177,30 @@ function WorkCard({ work, index }) {
           {work.duration}
         </div>
 
-        <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 ${
-          isPlaying ? 'opacity-0' : 'opacity-0 group-hover:opacity-100'
-        }`}>
-          <div
-            className="w-16 h-16 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center border"
-            style={{ borderColor: 'rgba(217,70,239,0.4)' }}
+        {/* Play / Pause button — always visible, only rendered when a video exists */}
+        {work.video && (
+          <button
+            onClick={isPlaying ? handlePauseClick : handlePlayClick}
+            aria-label={isPlaying ? `Pause video for ${work.title}` : `Play video for ${work.title}`}
+            className="absolute inset-0 flex items-center justify-center z-10"
           >
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M7 4.5l10 5.5-10 5.5V4.5z" fill="#d946ef" fillOpacity="0.9" />
-            </svg>
-          </div>
-        </div>
+            <div
+              className="w-16 h-16 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center border transition-transform duration-300 hover:scale-110"
+              style={{ borderColor: 'rgba(217,70,239,0.4)' }}
+            >
+              {isPlaying ? (
+                <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+                  <rect x="4" y="3" width="4" height="14" rx="1" fill="#d946ef" fillOpacity="0.9" />
+                  <rect x="12" y="3" width="4" height="14" rx="1" fill="#d946ef" fillOpacity="0.9" />
+                </svg>
+              ) : (
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M7 4.5l10 5.5-10 5.5V4.5z" fill="#d946ef" fillOpacity="0.9" />
+                </svg>
+              )}
+            </div>
+          </button>
+        )}
 
         <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6">
           <div className="text-[9px] uppercase tracking-[0.4em] mb-2 font-medium" style={{ color: '#d946ef' }}>

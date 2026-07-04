@@ -1,4 +1,4 @@
-import { useRef ,useState } from 'react'
+import { useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 
 const services = [
@@ -46,22 +46,24 @@ function ServiceItem({ service, index }) {
   const inView = useInView(ref, { once: true, margin: '-60px' })
   const isEven = index % 2 === 0
 
+  const handlePlayClick = (e) => {
+    e.stopPropagation()
+    if (!videoRef.current) return
+    videoRef.current.play().catch(() => {})
+    setIsPlaying(true)
+  }
+
+  const handlePauseClick = (e) => {
+    e.stopPropagation()
+    if (!videoRef.current) return
+    videoRef.current.pause()
+    videoRef.current.currentTime = 0
+    setIsPlaying(false)
+  }
+
   return (
     <motion.div
-  ref={ref}
-  onHoverStart={() => {
-    if (videoRef.current) {
-      videoRef.current.play().catch(() => {})
-      setIsPlaying(true)
-    }
-  }}
-  onHoverEnd={() => {
-    if (videoRef.current) {
-      videoRef.current.pause()
-      videoRef.current.currentTime = 0
-      setIsPlaying(false)
-    }
-  }}
+      ref={ref}
       initial={{ opacity: 0, y: 48 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
@@ -69,7 +71,7 @@ function ServiceItem({ service, index }) {
         isEven ? 'sm:flex-row' : 'sm:flex-row-reverse'
       } items-center border-b border-white/[0.06] pb-16 sm:pb-20 mb-16 sm:mb-20 last:border-0 last:mb-0 last:pb-0`}
     >
-  {/* Image / Video */}
+      {/* Image / Video */}
       <div className="w-full sm:w-1/2 relative overflow-hidden rounded-xl aspect-[4/3] flex-shrink-0">
         <div className="absolute inset-0 bg-gradient-to-br from-stone-800 via-stone-900 to-black" />
 
@@ -87,11 +89,38 @@ function ServiceItem({ service, index }) {
             playsInline
             preload="metadata"
             onEnded={() => setIsPlaying(false)}
+            onClick={isPlaying ? handlePauseClick : undefined}
             className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${isPlaying ? 'opacity-100' : 'opacity-0'}`}
           >
             <source src={service.video} type="video/mp4" />
           </video>
         )}
+
+      {/* Play / Pause button — always visible, swaps icon based on state */}
+        {service.video && (
+          <button
+            onClick={isPlaying ? handlePauseClick : handlePlayClick}
+            aria-label={isPlaying ? `Pause video for ${service.title}` : `Play video for ${service.title}`}
+            className="absolute inset-0 flex items-center justify-center z-10"
+          >
+            <div
+              className="w-16 h-16 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center border transition-transform duration-300 hover:scale-110"
+              style={{ borderColor: 'rgba(201,150,58,0.4)' }}
+            >
+              {isPlaying ? (
+                <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+                  <rect x="4" y="3" width="4" height="14" rx="1" fill="#c9963a" fillOpacity="0.9" />
+                  <rect x="12" y="3" width="4" height="14" rx="1" fill="#c9963a" fillOpacity="0.9" />
+                </svg>
+              ) : (
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M7 4.5l10 5.5-10 5.5V4.5z" fill="#c9963a" fillOpacity="0.9" />
+                </svg>
+              )}
+            </div>
+          </button>
+        )}
+
         {/* Film grain */}
         <div
           className="absolute inset-0 opacity-[0.25] mix-blend-overlay pointer-events-none"

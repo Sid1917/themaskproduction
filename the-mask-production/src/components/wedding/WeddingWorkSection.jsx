@@ -116,6 +116,21 @@ function WorkCard({ work, index }) {
   const [isPlaying, setIsPlaying] = useState(false)
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
+  const handlePlayClick = (e) => {
+    e.stopPropagation()
+    if (!videoRef.current) return
+    videoRef.current.play().catch(() => {})
+    setIsPlaying(true)
+  }
+
+  const handlePauseClick = (e) => {
+    e.stopPropagation()
+    if (!videoRef.current) return
+    videoRef.current.pause()
+    videoRef.current.currentTime = 0
+    setIsPlaying(false)
+  }
+
   return (
     <motion.div
       ref={ref}
@@ -123,19 +138,6 @@ function WorkCard({ work, index }) {
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.9, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
       className={`group relative overflow-hidden cursor-pointer ${work.wide ? 'md:col-span-2' : 'md:col-span-1'}`}
-      onHoverStart={() => {
-        if (videoRef.current) {
-          videoRef.current.play().catch(() => {})
-          setIsPlaying(true)
-        }
-      }}
-      onHoverEnd={() => {
-        if (videoRef.current) {
-          videoRef.current.pause()
-          videoRef.current.currentTime = 0
-          setIsPlaying(false)
-        }
-      }}
     >
       <div className={`relative overflow-hidden ${work.wide ? 'aspect-[16/9]' : 'aspect-[4/5]'}`}>
 
@@ -150,7 +152,7 @@ function WorkCard({ work, index }) {
           onError={(e) => { e.target.style.display = 'none' }}
         />
 
-        {/* 3. Video — above image, fades in on hover */}
+        {/* 3. Video — plays on click, not hover */}
         {work.video && (
           <video
             ref={videoRef}
@@ -166,7 +168,7 @@ function WorkCard({ work, index }) {
           </video>
         )}
 
-        {/* 4. Subtle overlays — after video so they sit on top lightly */}
+        {/* 4. Subtle overlays */}
         <div
           className="absolute inset-0 opacity-[0.2] mix-blend-overlay pointer-events-none"
           style={{ backgroundImage: GRAIN, backgroundSize: '180px 180px' }}
@@ -181,19 +183,30 @@ function WorkCard({ work, index }) {
           {work.duration}
         </div>
 
-        {/* Play button — shows when not playing */}
-        <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 ${
-          isPlaying ? 'opacity-0' : 'opacity-0 group-hover:opacity-100'
-        }`}>
-          <div
-            className="w-16 h-16 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center border"
-            style={{ borderColor: 'rgba(201,150,58,0.4)' }}
+        {/* Play / Pause button — always visible, only rendered when a video exists */}
+        {work.video && (
+          <button
+            onClick={isPlaying ? handlePauseClick : handlePlayClick}
+            aria-label={isPlaying ? `Pause video for ${work.title}` : `Play video for ${work.title}`}
+            className="absolute inset-0 flex items-center justify-center z-10"
           >
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M7 4.5l10 5.5-10 5.5V4.5z" fill="#c9963a" fillOpacity="0.9" />
-            </svg>
-          </div>
-        </div>
+            <div
+              className="w-16 h-16 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center border transition-transform duration-300 hover:scale-110"
+              style={{ borderColor: 'rgba(201,150,58,0.4)' }}
+            >
+              {isPlaying ? (
+                <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+                  <rect x="4" y="3" width="4" height="14" rx="1" fill="#c9963a" fillOpacity="0.9" />
+                  <rect x="12" y="3" width="4" height="14" rx="1" fill="#c9963a" fillOpacity="0.9" />
+                </svg>
+              ) : (
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M7 4.5l10 5.5-10 5.5V4.5z" fill="#c9963a" fillOpacity="0.9" />
+                </svg>
+              )}
+            </div>
+          </button>
+        )}
 
         <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6">
           <div className="text-[9px] uppercase tracking-[0.4em] mb-2 font-medium" style={{ color: '#c9963a' }}>
@@ -212,7 +225,7 @@ function WorkCard({ work, index }) {
   )
 }
 
-/* ── New carousel card — 1080×1020 aspect ratio ── */
+/* ── Carousel card — 1080×1020 aspect ratio, image-only, no video ── */
 function CarouselCard({ section, index }) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
@@ -242,9 +255,8 @@ function CarouselCard({ section, index }) {
       transition={{ duration: 0.9, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
       className="group relative overflow-hidden cursor-pointer md:col-span-1"
     >
-      {/* Exact 1080×1020 aspect ratio */}
+      {/* Exact 1080×1020 aspect ratio — fixed duplicate className bug */}
       <div
-        className="relative overflow-hidden"
         className="relative overflow-hidden aspect-[9/16]"
         onPointerDown={onPointerDown}
         onPointerUp={onPointerUp}
