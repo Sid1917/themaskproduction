@@ -8,7 +8,7 @@ const works = [
     location: 'Mumbai, Maharashtra',
     year: '2025',
     wide: true,
-    image: '/images/event1.png',
+    image: '/images/home2_g20.jpeg',
     video: '/videos/corporate_g20.mp4',
     duration: '5 min film',
   },
@@ -18,8 +18,8 @@ const works = [
     location: 'Pune, Maharashtra',
     year: '2025',
     wide: false,
-    image: '/images/event2.jpeg',
-    video: '/videos/event_video2.mp4',
+    image: '/images/sopl_cover.jpg',
+    video: '/videos/SOPL_First_draft_compressed.mp4',
     duration: '6 min film',
   },
   {
@@ -28,8 +28,8 @@ const works = [
     location: 'Mumbai, Maharashtra',
     year: '2026',
     wide: false,
-    image: '/images/event3.jpeg',
-    video: '/videos/event_video3.mp4',
+    image: '/images/asha_cover.jpeg',
+    video: '/videos/commercial_video_3_compressed.mp4',
     duration: '4 min film',
   },
   {
@@ -38,8 +38,8 @@ const works = [
     location: 'Goa, India',
     year: '2026',
     wide: true,
-    image: '/images/event4.jpeg',
-    video: '/videos/event_video4.mp4',
+    image: '/images/oreo_cover1.jpeg',
+    video: '/videos/Oreo_BTS-2nd_Output_compressed.mp4',
     duration: '7 min film',
   },
 ]
@@ -52,12 +52,11 @@ const carouselSections = [
     year: '2025',
     duration: 'Photo Series',
     images: [
-      '/images/event_c1A.jpeg',
-      '/images/event_c1B.jpeg',
-      '/images/event_c1C.jpeg',
-      '/images/event_c1D.jpeg',
-      '/images/event_c1E.jpeg',
-      '/images/event_c1F.jpeg',
+      '/images/carousel_eventA1.jpeg',
+      '/images/carousel_eventA2.jpeg',
+      '/images/carousel_eventA3.jpeg',
+      '/images/carousel_eventA4.jpeg',
+      '/images/carousel_eventA5.jpeg',
     ],
   },
   {
@@ -67,12 +66,12 @@ const carouselSections = [
     year: '2025',
     duration: 'Candid Series',
     images: [
-      '/images/event_c2A.jpeg',
-      '/images/event_c2B.jpeg',
-      '/images/event_c2C.jpeg',
-      '/images/event_c2D.jpeg',
-      '/images/event_c2E.jpeg',
-      '/images/event_c2F.jpeg',
+      '/images/caraouse_eventlB1.jpeg',
+      '/images/caraouse_eventlB2.jpeg',
+      '/images/caraouse_eventlB3.jpeg',
+      '/images/caraouse_eventlB4.jpeg',
+      '/images/caraouse_eventlB5.jpeg',
+      '/images/caraouse_eventlB6.jpeg',
     ],
   },
   {
@@ -82,12 +81,12 @@ const carouselSections = [
     year: '2025',
     duration: '3 min highlight',
     images: [
-      '/images/event_c3A.jpeg',
-      '/images/event_c3B.jpeg',
-      '/images/event_c3C.jpeg',
-      '/images/event_c3D.jpeg',
-      '/images/event_c3E.jpeg',
-      '/images/event_c3F.jpeg',
+      '/images/caraouse_eventC1.jpeg',
+      '/images/co.jpeg',
+      '/images/caraouse_eventC2.jpeg',
+      '/images/caraouse_eventC3.jpeg',
+      '/images/caraouse_eventC4.jpeg',
+      '/images/caraouse_eventC5.jpeg',
     ],
   },
   {
@@ -97,12 +96,12 @@ const carouselSections = [
     year: '2026',
     duration: '2 min highlight',
     images: [
-      '/images/event_c4A.jpeg',
-      '/images/event_c4B.jpeg',
-      '/images/event_c4C.jpeg',
-      '/images/event_c4D.jpeg',
-      '/images/event_c4E.jpeg',
-      '/images/event_c4F.jpeg',
+      '/images/caraouse_eventD1.jpeg',
+      '/images/caraouse_eventD2.jpeg',
+      '/images/caraouse_eventD3.jpeg',
+      '/images/caraouse_eventD4.jpeg',
+      '/images/caraouse_eventD5.jpeg',
+      '/images/caraouse_eventD6.jpeg',
     ],
   },
 ]
@@ -249,7 +248,7 @@ function CarouselCard({ section, index }) {
       className="group relative overflow-hidden cursor-pointer md:col-span-1"
     >
       <div
-        className="relative overflow-hidden aspect-[9/16]"
+        className="relative overflow-hidden aspect-[16/9]"
         onPointerDown={onPointerDown}
         onPointerUp={onPointerUp}
         onTouchStart={onTouchStart}
@@ -322,7 +321,7 @@ function CarouselCard({ section, index }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.4, duration: 0.5 }}
-            className="absolute bottom-[72px] right-5 z-10 flex items-center gap-1.5 pointer-events-none"
+            className="absolute bottom-16 right-5 z-10 flex items-center gap-1.5 pointer-events-none"
           >
             <span className="text-[9px] uppercase tracking-[0.3em] text-white/20">Swipe</span>
             <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
@@ -406,7 +405,7 @@ export default function EventsWorkSection() {
 
         <div className="my-3 sm:my-4 h-px w-full" style={{ background: 'rgba(217,70,239,0.06)' }} />
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 sm:gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
           {carouselSections.map((section, i) => (
             <CarouselCard key={section.title} section={section} index={i} />
           ))}

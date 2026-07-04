@@ -118,7 +118,7 @@ export default function CinematicHero({
           <motion.div
             onClick={triggerEffect}
             whileTap={{ scale: 0.95 }}
-            className="relative z-30 mx-auto mt-8 w-fit overflow-visible cursor-pointer sm:mt-10"
+            className="relative z-30 mx-auto mt-8 flex h-36 w-fit items-center justify-center overflow-visible cursor-pointer sm:mt-10 sm:h-48"
           >
             {object(isEffectActive)}
           </motion.div>
