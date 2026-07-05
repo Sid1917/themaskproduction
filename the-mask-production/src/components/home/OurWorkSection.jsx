@@ -8,7 +8,7 @@ const works = [
     location: 'Destination Wedding, Attasa',
     year: '2025',
     wide: true,
-    image: '/images/home1.jpeg',
+    image: '/images/home1.webp',
     video: '/videos/wedding_video1.mp4',
   },
   {
@@ -17,7 +17,7 @@ const works = [
     location: 'Urmudi Dam, Maharashtra',
     year: '2025',
     wide: false,
-    image: '/images/home2.jpeg',
+    image: '/images/home2.webp',
   },
   {
     category: 'Drone Shot ',
@@ -25,7 +25,7 @@ const works = [
     location: 'Gateway of India, Mumbai',
     year: '2025',
     wide: false,
-    image: '/images/gateway.jpeg',
+    image: '/images/gateway.webp',
   },
   {
     category: 'Wedding Film',
@@ -33,7 +33,7 @@ const works = [
     location: 'Goa',
     year: '2025',
     wide: true,
-    image: '/images/govt1.jpeg',
+    image: '/images/govt1.webp',
   },
 ]
 

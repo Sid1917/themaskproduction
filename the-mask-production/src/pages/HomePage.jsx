@@ -8,23 +8,23 @@ import WhyUsSection from '../components/home/WhyUsSection'
 import Footer from '../components/home/Footer'
 
 const HOME_IMAGES = [
-  '/images/home2_g20.jpeg',
-  '/images/home1.jpeg',
-  '/images/home3.jpeg',
-  '/images/home4.jpeg',
+  '/images/home2_g20.webp',
+  '/images/home1.webp',
+  '/images/home3.webp',
+  '/images/home4.webp',
 ]
 const works = [
   {
-    image: '/images/home1.jpeg',
+    image: '/images/home1.webp',
   },
   {
-    image: '/images/home2_g20.jpeg',
+    image: '/images/home2_g20.webp',
   },
   {
-    image: '/images/home3.jpeg',
+    image: '/images/home3.webp',
   },
   {
-    image: '/images/govt_event.jpeg',
+    image: '/images/govt_event.webp',
   },
 ]
 export default function HomePage() {

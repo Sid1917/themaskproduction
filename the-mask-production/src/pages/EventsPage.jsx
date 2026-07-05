@@ -10,11 +10,11 @@ import EventsPricingSection from '../components/events/EventsPricingSection'
 import Footer from '../components/home/Footer'
 
 const EVENTS_IMAGES = [
-  '/images/commercial_1.jpeg',
-  '/images/commercial_2.jpeg',
-  '/images/commercial_3.jpeg',
-  '/images/commercial_4.jpeg',
-  '/images/commercial_5.jpeg',
+  '/images/commercial_1.webp',
+  '/images/commercial_2.webp',
+  '/images/commercial_3.webp',
+  '/images/commercial_4.webp',
+  '/images/commercial_5.webp',
 ]
 
 export default function EventsPage() {

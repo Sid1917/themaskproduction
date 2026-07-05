@@ -10,11 +10,11 @@ import WeddingPricingSection from '../components/wedding/WeddingPricingSection'
 import Footer from '../components/home/Footer'
 
 const WEDDING_IMAGES = [
- '/images/wedding2.jpeg',
-  '/images/wedding4.jpeg',
-  '/images/wedding3.jpeg',
-  '/images/wedding1.jpeg',
-  '/images/wedding3.jpeg',
+ '/images/wedding2.webp',
+  '/images/wedding4.webp',
+  '/images/wedding3.webp',
+  '/images/wedding1.webp',
+  '/images/wedding3.webp',
 ]
 
 export default function WeddingPage() {
