@@ -31,9 +31,9 @@ const services = [
   {
     title: 'Brand Films',
     subtitle: 'Stories that move people',
-    desc: 'Short films for brands that believe their story deserves more than a brochure. Concept to colour grade — crafted to connect, not just convert.',
+    desc: 'Motion graphics and animated storytelling for brands with a message worth explaining. From concept to final render — built to simplify, engage, and convert.',
     offerings: ['Brand Stories', 'Social Reels', 'Product Films', 'Ad Films'],
-    image: '/images/brand_image2.png',
+    image: '/images/brand_image2.webp',
     video: '/videos/BRAND99_AV_video2.mp4',
     accent: '#c9963a',
   },
@@ -192,11 +192,11 @@ export default function ServicesSection() {
             <div className="h-px w-10 bg-amber-400/30" />
           </div>
           <h2 className="text-4xl font-light tracking-tight text-white/90 sm:text-5xl lg:text-6xl leading-[1.1] mb-4">
-            <span className="italic">Crafted for moments </span><br />
-            <span className="font-semibold not-italic">that last forever</span>
+            <span className="italic">One vision</span><br />
+            <span className="font-semibold not-italic">every kind of story</span>
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-sm leading-8 text-white/40 sm:text-base">
-            Whether it's your wedding day or your brand's story — we bring the same obsessive care to every frame.
+           Weddings, commercial campaigns, corporate events, and drone cinematography — unified by the same commitment to craft, detail, and impact.
           </p>
         </motion.div>
 

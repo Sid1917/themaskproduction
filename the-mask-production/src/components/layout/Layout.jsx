@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 
 const navLinks = [
   { href: '/',        label: 'Home',    sub: 'Cinematic storytelling' },
-  { href: '/events',  label: 'Events',  sub: 'Live & corporate'       },
+  { href: '/events',  label: 'Commercial & Events',  sub: 'Live & corporate'       },
   { href: '/wedding', label: 'Wedding', sub: 'Every moment, forever'  },
   { href: '/drone',   label: 'Drone',   sub: 'Aerial perspectives'    },
   { href: '/about',   label: 'About',   sub: 'Our story & team'       },
@@ -16,7 +16,6 @@ const dividerAfter = [1, 3]
 export default function Layout({ children }) {
   const [menuOpen, setMenuOpen] = useState(false)
   const location = useLocation()
-
   return (
     <div className="min-h-screen overflow-hidden bg-black text-white">
 

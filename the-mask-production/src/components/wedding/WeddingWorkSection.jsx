@@ -8,7 +8,7 @@ const works = [
     location: 'Mumbai, Maharashtra',
     year: '2024',
     wide: true,
-    image: '/images/wedding7.png',
+    image: '/images/wedding7.webp',
     video: '/videos/video1.mp4',
     duration: '4 min film',
   },

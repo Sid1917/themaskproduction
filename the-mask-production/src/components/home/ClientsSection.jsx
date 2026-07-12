@@ -30,8 +30,8 @@ const testimonials = [
 ]
 
 const clientNames = [
-  'Taj Hotels', 'TEDx Mumbai', 'Zudio', 'Oberoi Group',
-  'Weddingsutra', 'SonyLIV', 'Reliance Brands', 'ITC Hotels',
+  'Maharastra GOVT', 'MY BMC', 'MUKTANGAN NGO', 'SOPL ORGANICS',
+  'NITIN TANDON', 'SIDDHIVINAYAK ENTERPRISE', 'MUMBAI POLICE', 'NMMIS',
 ]
 
 export default function ClientsSection() {
@@ -41,7 +41,7 @@ export default function ClientsSection() {
   const statsInView = useInView(statsRef, { once: true, margin: '-60px' })
 
   return (
-    <section className="relative py-24 px-4 sm:py-32 sm:px-6 lg:px-8 bg-black overflow-hidden">
+    <section className="relative pt-24 px-4 sm:pt-32 sm:px-6 lg:px-8 bg-black overflow-hidden">
       {/* Warm radial glow */}
       <div className="pointer-events-none absolute bottom-0 right-1/4 w-[600px] h-[400px] rounded-full blur-[160px] bg-amber-800/[0.07]" />
 
@@ -91,7 +91,9 @@ export default function ClientsSection() {
         </motion.div>
 
         {/* Client names — elegant text list */}
-        <div className="mb-20 sm:mb-24">
+        {/* <div className="mb-20 sm:mb-24">  */}
+        <div>
+        
           <p className="text-center text-[10px] uppercase tracking-[0.4em] text-white/20 mb-8">
             Brands & families we've worked with
           </p>
@@ -118,44 +120,44 @@ export default function ClientsSection() {
           </div>
         </div>
 
-        {/* Testimonials */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-          {testimonials.map((t, i) => (
-            <motion.div
-              key={t.name}
-              initial={{ opacity: 0, y: 32 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.7, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
-              className="flex flex-col gap-6 p-6 sm:p-8 rounded-2xl border border-white/[0.06]"
-              style={{ background: 'linear-gradient(135deg, rgba(201,150,58,0.04), transparent)' }}
-            >
-              {/* Large italic quote mark */}
-              <div
-                className="text-6xl font-serif leading-none"
-                style={{ color: 'rgba(201,150,58,0.25)' }}
-              >
-                "
-              </div>
-              <p className="text-sm leading-8 text-white/55 flex-1 -mt-4 italic">
-                {t.quote}
-              </p>
-              <div className="flex items-center gap-3 pt-4 border-t border-white/[0.06]">
-                {/* Initial avatar */}
-                <div
-                  className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-semibold flex-shrink-0"
-                  style={{ background: 'rgba(201,150,58,0.15)', color: '#c9963a' }}
-                >
-                  {t.initials}
-                </div>
-                <div>
-                  <div className="text-sm font-medium text-white/75">{t.name}</div>
-                  <div className="text-[11px] text-white/30 mt-0.5">{t.role}</div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+
+       {/* Testimonials 
+<div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+  {testimonials.map((t, i) => (
+    <motion.div
+      key={t.name}
+      initial={{ opacity: 0, y: 32 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-60px' }}
+      transition={{ duration: 0.7, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
+      className="flex flex-col gap-6 p-6 sm:p-8 rounded-2xl border border-white/[0.06]"
+      style={{ background: 'linear-gradient(135deg, rgba(201,150,58,0.04), transparent)' }}
+    >
+      <div
+        className="text-6xl font-serif leading-none"
+        style={{ color: 'rgba(201,150,58,0.25)' }}
+      >
+        "
+      </div>
+      <p className="text-sm leading-8 text-white/55 flex-1 -mt-4 italic">
+        {t.quote}
+      </p>
+      <div className="flex items-center gap-3 pt-4 border-t border-white/[0.06]">
+        <div
+          className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-semibold flex-shrink-0"
+          style={{ background: 'rgba(201,150,58,0.15)', color: '#c9963a' }}
+        >
+          {t.initials}
         </div>
+        <div>
+          <div className="text-sm font-medium text-white/75">{t.name}</div>
+          <div className="text-[11px] text-white/30 mt-0.5">{t.role}</div>
+        </div>
+      </div>
+    </motion.div>
+  ))}
+</div>
+*/}
       </div>
     </section>
   )

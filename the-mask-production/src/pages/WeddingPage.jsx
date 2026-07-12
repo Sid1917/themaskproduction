@@ -35,9 +35,9 @@ export default function WeddingPage() {
 
       <WeddingStatsBar />
       <WeddingWorkSection />
-      <WeddingProcessSection />
+      {/* <WeddingProcessSection /> */}
       <WeddingTestimonialsSection />
-      <WeddingSocialSection />
+      {/* <WeddingSocialSection /> */}
       <WeddingPricingSection />
       <Footer />
     </>

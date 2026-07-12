@@ -3,8 +3,8 @@ import { motion, useInView } from 'framer-motion'
 
 const works = [
   {
-    category: 'Product Launch',
-    title: 'Nova Tech — Series X',
+    category: 'Maharashtra Govt Work',
+    title: 'G20 Summit 2025',
     location: 'Mumbai, Maharashtra',
     year: '2025',
     wide: true,
@@ -13,18 +13,18 @@ const works = [
     duration: '5 min film',
   },
   {
-    category: 'Music Concert',
-    title: 'Indie Nights Vol. 4',
+    category: 'Commercial Exhibition',
+    title: 'SOPL Speciality Organics Pvt. Ltd.',
     location: 'Pune, Maharashtra',
     year: '2025',
     wide: false,
-    image: '/images/sopl_cover.jpg',
+    image: '/images/sopl_cover.webp',
     video: '/videos/SOPL_First_draft_compressed.mp4',
     duration: '6 min film',
   },
   {
-    category: 'Corporate Conclave',
-    title: 'Horizon Summit 2026',
+    category: 'My BMC work',
+    title: 'Late Asha Bhosale Ji\'s\ Funeral Rituals',
     location: 'Mumbai, Maharashtra',
     year: '2026',
     wide: false,
@@ -33,9 +33,9 @@ const works = [
     duration: '4 min film',
   },
   {
-    category: 'Award Night',
-    title: 'The Craft Awards',
-    location: 'Goa, India',
+    category: 'Commercial Ad Shoot',
+    title: 'Oreo - Product Ad shoot',
+    location: 'Mumbai, India',
     year: '2026',
     wide: true,
     image: '/images/oreo_cover1.webp',
@@ -60,9 +60,9 @@ const carouselSections = [
     ],
   },
   {
-    category: 'Crowd Energy',
-    title: 'The Front Row',
-    location: 'Pune',
+    category: 'G20 Summit',
+    title: 'Full event coverage',
+    location: 'Mumbai, Maharashtra',
     year: '2025',
     duration: 'Candid Series',
     images: [
@@ -75,14 +75,13 @@ const carouselSections = [
     ],
   },
   {
-    category: 'Brand Activation',
+    category: 'Govt Work Gallery',
     title: 'On-Ground Experience',
-    location: 'Bengaluru',
+    location: 'India',
     year: '2025',
-    duration: '3 min highlight',
+    duration: 'Photo Series',
     images: [
       '/images/caraouse_eventC1.webp',
-      '/images/co.webp',
       '/images/caraouse_eventC2.webp',
       '/images/caraouse_eventC3.webp',
       '/images/caraouse_eventC4.webp',
@@ -90,11 +89,11 @@ const carouselSections = [
     ],
   },
   {
-    category: 'Award Moments',
-    title: 'On Stage',
-    location: 'Goa',
+    category: 'My BMC Event Work',
+    title: 'Full Event Coverage',
+    location: 'Mumbai, Maharashtra',
     year: '2026',
-    duration: '2 min highlight',
+    duration: 'Highlights Series',
     images: [
       '/images/caraouse_eventD1.webp',
       '/images/caraouse_eventD2.webp',
@@ -372,7 +371,7 @@ export default function EventsWorkSection() {
           <div className="flex items-center gap-4 mb-6">
             <div className="h-px w-10 bg-fuchsia-400/40" />
             <span className="text-[10px] uppercase tracking-[0.5em] text-fuchsia-400/60 font-medium">
-              Events Portfolio
+             Commercial & Events Portfolio
             </span>
           </div>
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5">

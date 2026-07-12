@@ -28,11 +28,11 @@ const navItems = [
     group: 2,
   },
   {
-    label: 'Events',
+    label: 'Commercial',
     desc: 'Live & corporate',
     icon: '🎬',
     color: 'fuchsia',
-    href: '/events',
+    href: '/commercial',
     group: 2,
   },
   {

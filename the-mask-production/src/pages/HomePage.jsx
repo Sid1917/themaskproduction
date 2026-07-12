@@ -46,7 +46,7 @@ export default function HomePage() {
       <OurWorkSection />
       <ServicesSection />
       <ClientsSection />
-      <WhyUsSection />
+      {/* <WhyUsSection /> */}
       <Footer />
     </>
   )

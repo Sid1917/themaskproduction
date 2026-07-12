@@ -70,11 +70,11 @@ export default function Footer() {
             <div className="h-px w-10 bg-amber-400/30" />
           </div>
           <h2 className="text-3xl font-light tracking-tight text-white/90 sm:text-5xl lg:text-6xl leading-[1.1] mb-3">
-            <span className="italic">Your story deserves </span><br />
-            <span className="font-semibold not-italic">a cinematic frame</span>
+            <span className="italic">Every project starts </span><br />
+            <span className="font-semibold not-italic">with a conversation</span>
           </h2>
           <p className="text-sm text-white/35 mt-4 mb-8 max-w-sm mx-auto leading-7">
-            We'd love to hear about your day. Reach out and let's start the conversation.
+            Tell us about your story — big or small, personal or commercial — and let's discuss how we can bring it to the screen.
           </p>
           <a
             href="mailto:hello@maskproduction.in"

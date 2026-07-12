@@ -28,9 +28,9 @@ const works = [
     image: '/images/gateway.webp',
   },
   {
-    category: 'Wedding Film',
-    title: 'Rohan & Sneha',
-    location: 'Goa',
+    category: 'Maharashtra Govt Event',
+    title: 'Shivaji Maharaj Jayanti Celebration',
+    location: 'Mumbai, Maharashtra',
     year: '2025',
     wide: true,
     image: '/images/govt1.webp',

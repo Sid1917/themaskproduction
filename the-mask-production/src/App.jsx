@@ -5,6 +5,7 @@ import DronePage from './pages/DronePage'
 import WeddingPage from './pages/WeddingPage'
 import EventsPage from './pages/EventsPage'
 import AboutPage from './pages/AboutPage'
+import StickyLeadBar from './components/shared/StickyLeadBar'
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
           <Route path="/drone" element={<DronePage />} />
           <Route path="/about" element={<AboutPage />} />
         </Routes>
+         <StickyLeadBar /> 
       </Layout>
     </BrowserRouter>
   )
