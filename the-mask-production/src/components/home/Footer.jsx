@@ -163,8 +163,8 @@ export default function Footer() {
             <div className="text-[10px] uppercase tracking-[0.4em] text-white/20 mb-5">Find Us</div>
             <ul className="flex flex-col gap-5">
               {[
-                { label: 'Email', value: 'hello@maskproduction.in', href: 'mailto:hello@maskproduction.in' },
-                { label: 'Phone', value: '+91 99999 99999',         href: 'tel:+919999999999' },
+                { label: 'Email', value: 'themaskprodcution@gmail.com', href: 'mailto:hello@maskproduction.in' },
+                { label: 'Phone', value: '+91 79773 00040 / +91 98704 66963',         href: 'tel:+919999999999' },
                 { label: 'Based in', value: 'Mumbai, Maharashtra',  href: null },
                 { label: 'Shoots across', value: 'All of India',    href: null },
               ].map((c) => (
