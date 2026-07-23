@@ -279,7 +279,7 @@ function CarouselCard({ section, index }) {
         ))}
 
         {/* Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-br from-stone-800/60 via-stone-900/40 to-black/70 pointer-events-none" />
+        {/* <div className="absolute inset-0 bg-gradient-to-br from-stone-800/60 via-stone-900/40 to-black/70 pointer-events-none" /> */}
         <div
           className="absolute inset-0 opacity-[0.25] mix-blend-overlay pointer-events-none"
           style={{ backgroundImage: GRAIN, backgroundSize: '180px 180px' }}

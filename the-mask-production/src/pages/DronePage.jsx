@@ -22,14 +22,28 @@ export default function DronePage() {
     <>
       {/* Hero */}
       <section className="relative min-h-screen overflow-visible bg-black text-white">
+        <div className="absolute inset-0 overflow-hidden">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster="/drone/hero-poster.jpg"
+            className="h-full w-full object-cover opacity-60"
+          >
+            <source src="/videos/drone_showreel.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-black/50" />
+        </div>
+        
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.18),transparent_35%),radial-gradient(circle_at_bottom_right,rgba(59,130,246,0.12),transparent_35%)]" />
         <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:80px_80px]" />
 
         <div className="relative z-20 flex min-h-[100svh] items-center justify-center overflow-visible px-4 pt-24 sm:px-6 lg:px-10">
           <div className="mx-auto w-full max-w-6xl text-center">
-            <div className="mx-auto mb-8 inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-3 text-[11px] uppercase tracking-[0.35em] text-cyan-100/70 backdrop-blur-xl sm:px-5 sm:py-3 sm:text-xs">
+            {/* <div className="mx-auto mb-8 inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-3 text-[11px] uppercase tracking-[0.35em] text-cyan-100/70 backdrop-blur-xl sm:px-5 sm:py-3 sm:text-xs">
               Drag Drone To Scan
-            </div>
+            </div> */}
 
             <motion.div
               style={{
@@ -41,15 +55,13 @@ export default function DronePage() {
               transition={{ type: 'spring', stiffness: 100, damping: 18 }}
               className="relative"
             >
-              <motion.h1
-                animate={{ letterSpacing: ['-0.08em', '-0.1em', '-0.08em'] }}
-                transition={{ duration: 4, repeat: Infinity }}
-                className="mx-auto max-w-[18ch] text-[clamp(3rem,9vw,6rem)] font-black uppercase leading-tight tracking-[-0.07em] sm:max-w-[20ch] md:text-[7rem] lg:text-[8rem]"
-              >
-                <span className="bg-gradient-to-b from-cyan-100 via-white to-cyan-400/20 bg-clip-text text-transparent">
-                  SEE THE WORLD DIFFERENTLY
-                </span>
-              </motion.h1>
+              <h1
+  className="mx-auto max-w-[18ch] text-[clamp(1.75rem,6.5vw,4rem)] font-black uppercase leading-[1.15] tracking-[0.02em] sm:max-w-[20ch]"
+>
+  <span className="bg-gradient-to-b from-white via-white to-white/20 bg-clip-text text-transparent">
+    SEE THE WORLD DIFFERENTLY
+  </span>
+</h1>
 
               <motion.div
                 animate={{ y: ['-100%', '100%'], opacity: [0.1, 0.45, 0.1] }}
@@ -62,13 +74,13 @@ export default function DronePage() {
             </motion.div>
 
             <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.4 }}
-              className="mx-auto mt-8 max-w-3xl text-sm leading-7 text-cyan-50/80 sm:text-base md:text-lg"
-            >
-              Cinematic aerial visuals designed to elevate perspective through immersive motion, dynamic storytelling, and futuristic visual exploration.
-            </motion.p>
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.9, delay: 0.35 }}
+  className="mx-auto mt-4 max-w-[22rem] text-[13px] leading-relaxed text-white/55 sm:mt-10 sm:max-w-2xl sm:text-base md:text-lg"
+>
+  Cinematic aerial visuals designed to elevate perspective through immersive motion, dynamic storytelling, and futuristic visual exploration.
+</motion.p>
 
             <motion.div
               drag
