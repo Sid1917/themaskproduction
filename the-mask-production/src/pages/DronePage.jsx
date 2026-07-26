@@ -20,30 +20,39 @@ export default function DronePage() {
   const heroSectionRef = useRef(null)
   const heroVideoRef = useRef(null)
 
-  useEffect(() => {
-    const videoEl = heroVideoRef.current
-    const sectionEl = heroSectionRef.current
-    if (!videoEl || !sectionEl) return
+ useEffect(() => {
+  const videoEl = heroVideoRef.current
+  const sectionEl = heroSectionRef.current
+  if (!videoEl || !sectionEl) return
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        videoEl.muted = !entry.isIntersecting
-      },
-      { threshold: 0.4 } // section is considered "left" once less than 40% visible
-    )
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        videoEl.muted = false
+        videoEl.play().catch(() => {}) // catch in case play() is interrupted
+      } else {
+        videoEl.muted = true
+        videoEl.pause()
+      }
+    },
+    { threshold: 0.4 }
+  )
 
-    observer.observe(sectionEl)
-    return () => observer.disconnect()
-  }, [])
+  observer.observe(sectionEl)
+  return () => observer.disconnect()
+}, [])
 
   return (
     <>
       {/* Hero */}
-      <section className="relative min-h-screen overflow-visible bg-black text-white">
+      {/* Hero */}
+<section ref={heroSectionRef} className="relative min-h-screen overflow-visible bg-black text-white">
         <div className="absolute inset-0 overflow-hidden">
           <video
+          ref={heroVideoRef}
             autoPlay
             loop
+            muted
             playsInline
             poster="/drone/hero-poster.jpg"
             className="h-full w-full object-cover opacity-60"
