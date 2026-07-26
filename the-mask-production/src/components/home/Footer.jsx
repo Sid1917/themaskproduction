@@ -111,7 +111,7 @@ export default function Footer() {
               The Mask Production
             </div>
             <p className="text-sm leading-7 text-white/30 mb-7 max-w-[220px]">
-              Cinematic storytelling powered by light, movement, and emotion. Based in Mumbai, shooting across India.
+              7/A 2nd Floor, Kohinoor Building, Sion Bandra Link Road, Mumbai. Based in Mumbai, shooting across India.
             </p>
             <div className="flex items-center gap-2.5">
               {socials.map((s) => (
@@ -148,7 +148,7 @@ export default function Footer() {
           <div>
             <div className="text-[10px] uppercase tracking-[0.4em] text-white/20 mb-5">Services</div>
             <ul className="flex flex-col gap-3.5">
-              {['Wedding Films', 'Drone Shoots', 'Event Coverage', 'Brand Films', 'Same Day Edits'].map((s) => (
+              {['Wedding Films', 'Drone Shoots', 'Event Coverage', 'Brand Films', 'Reels'].map((s) => (
                 <li key={s}>
                   <span className="text-sm text-white/40 hover:text-white/80 transition-colors duration-200 cursor-pointer">
                     {s}

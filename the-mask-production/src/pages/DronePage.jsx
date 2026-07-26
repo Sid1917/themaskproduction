@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState , useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { DroneObject } from '../components/cinematic/SceneObjects'
 import DroneStatsBar from '../components/drone/DroneStatsBar'
@@ -17,6 +17,24 @@ const DRONE_STAGES = [
 
 export default function DronePage() {
   const [scanPosition, setScanPosition] = useState({ x: 0, y: 0 })
+  const heroSectionRef = useRef(null)
+  const heroVideoRef = useRef(null)
+
+  useEffect(() => {
+    const videoEl = heroVideoRef.current
+    const sectionEl = heroSectionRef.current
+    if (!videoEl || !sectionEl) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        videoEl.muted = !entry.isIntersecting
+      },
+      { threshold: 0.4 } // section is considered "left" once less than 40% visible
+    )
+
+    observer.observe(sectionEl)
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <>
@@ -26,7 +44,6 @@ export default function DronePage() {
           <video
             autoPlay
             loop
-            muted
             playsInline
             poster="/drone/hero-poster.jpg"
             className="h-full w-full object-cover opacity-60"

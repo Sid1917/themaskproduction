@@ -4,38 +4,32 @@ import { motion, useInView } from 'framer-motion'
 const testimonials = [
   {
     quote: 'We cried watching our film for the first time — they captured emotions we didn\'t even know were on camera. It felt like a movie about our life.',
-    name: 'Priya & Aryan Mehta',
-    role: 'Wedding · Udaipur Palace, 2024',
+    name: 'Akshay & Tejashree ',
     initials: 'PA',
   },
   {
     quote: 'I was worried they\'d be intrusive. They were completely invisible. But somehow they caught every single thing that mattered. I still don\'t know how.',
-    name: 'Sneha & Rohan Kapoor',
-    role: 'Wedding · Goa, 2025',
+    name: 'Dheeraj & Pooja',
     initials: 'SR',
   },
   {
     quote: 'Our families watch the highlight reel every anniversary. Three years later, it still makes my mother-in-law cry. That\'s the only review that matters.',
-    name: 'Ananya & Vikram Singh',
-    role: 'Wedding · Jaipur, 2023',
+    name: 'Prashant & Ashwini',
     initials: 'AV',
   },
   {
     quote: 'Worth every rupee and more. We paid for a highlight film and got a piece of art. Book them before they\'re fully booked — they fill up fast.',
-    name: 'Meera & Kabir Nair',
-    role: 'Wedding · Mussoorie, 2025',
+    name: 'Roshan & Uravashi',
     initials: 'MK',
   },
   {
     quote: 'What set them apart was the pre-shoot call. They genuinely listened. By the wedding day they knew our story better than most of our guests.',
-    name: 'Divya & Arjun Sharma',
-    role: 'Wedding · Mumbai, 2024',
+    name: 'Sushant & Tejashivi',
     initials: 'DA',
   },
   {
     quote: 'The same-day edit they screened at our reception had the entire room in tears. Our guests still talk about it. Absolutely extraordinary work.',
-    name: 'Riya & Siddharth Joshi',
-    role: 'Wedding · Lonavala, 2024',
+    name: 'Amol & Aishwarya',
     initials: 'RS',
   },
 ]

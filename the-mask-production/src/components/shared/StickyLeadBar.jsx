@@ -62,8 +62,20 @@ export default function StickyLeadBar() {
               Get in touch for a free consultation
             </p>
           </div>
-
-          <button
+          <a
+           href={`https://wa.me/${8779556779}?text=${encodeURIComponent(
+              "Hi! I'd like to enquire about your services."
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ml-auto flex items-center gap-2 px-5 py-2.5 rounded-full
+              text-black text-[13px] font-semibold uppercase tracking-[0.1em]
+              transition-opacity hover:opacity-90"
+            style={{ background: '#c9963a' }}
+          >
+            Enquire Now
+          </a>
+          {/* <button
             onClick={() => setIsOpen(true)}
             className="ml-auto flex items-center gap-2 px-5 py-2.5 rounded-full
               text-black text-[13px] font-semibold uppercase tracking-[0.1em]
@@ -71,7 +83,7 @@ export default function StickyLeadBar() {
             style={{ background: '#c9963a' }}
           >
             Enquire Now
-          </button>
+          </button> */}
         </div>
       </div>
 

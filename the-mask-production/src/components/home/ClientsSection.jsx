@@ -29,9 +29,14 @@ const testimonials = [
   },
 ]
 
-const clientNames = [
-  'Maharastra GOVT', 'MY BMC', 'MUKTANGAN NGO', 'SOPL ORGANICS',
-  'NITIN TANDON', 'SIDDHIVINAYAK ENTERPRISE', 'MUMBAI POLICE', 'NMMIS',
+const clientLogos = [
+  { name: 'Maharashtra GOVT', logo: '/images/ngo_muktangan.jpeg' },
+  { name: 'MY BMC', logo: '/images/BMC_LOGO.jpeg' },
+  { name: 'SOPL ORGANICS', logo: '/images/nitin_tandon.jpeg'},
+  { name: 'MUKTANGAN NGO', logo: '/images/Mumbai_Police.jpeg' },
+  { name: 'NMMIS', logo: '/images/nmims_logo.jpeg' },
+  { name: 'MUMBAI POLICE', logo: '/images/sopl_logo.jpeg' },
+  
 ]
 
 export default function ClientsSection() {
@@ -97,21 +102,26 @@ export default function ClientsSection() {
           <p className="text-center text-[10px] uppercase tracking-[0.4em] text-white/20 mb-8">
             Brands & families we've worked with
           </p>
-          <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 sm:gap-x-12">
-            {clientNames.map((name, i) => (
-              <motion.span
-                key={name}
+          <div className="flex flex-wrap justify-center items-center gap-x-10 gap-y-8 sm:gap-x-14">
+            {clientLogos.map((client, i) => (
+              <motion.div
+                key={client.name}
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.06 }}
-                className="text-sm sm:text-base text-white/20 hover:text-white/50 transition-colors duration-300 cursor-default tracking-wide"
+                className="flex items-center justify-center flex-shrink-0"
+                style={{ height: '48px', width: '140px' }}
               >
-                {name}
-              </motion.span>
+                <img
+                  src={client.logo}
+                  alt={client.name}
+                  className="max-h-full max-w-full object-contain transition-transform duration-300 hover:scale-105 cursor-default"
+                  onError={(e) => { e.target.style.display = 'none' }}
+                />
+              </motion.div>
             ))}
           </div>
-
           {/* Thin gold separator */}
           <div className="flex items-center gap-4 mt-10">
             <div className="flex-1 h-px bg-white/[0.05]" />

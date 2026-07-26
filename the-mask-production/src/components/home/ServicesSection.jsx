@@ -8,6 +8,7 @@ const services = [
     desc: 'From the quiet morning rituals to the last dance under the stars — we capture every whisper, laugh, and tear with the patience of a storyteller and the eye of a cinematographer.',
     offerings: ['Full-Day Coverage', 'Highlight Reel', 'Feature Film', 'Same Day Edit'],
     image: '/images/home1.webp',
+    video: '/videos/wedding_video1.mp4',
     accent: '#c9963a',
   },
   {

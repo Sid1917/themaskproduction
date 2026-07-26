@@ -135,6 +135,7 @@ import CinematicStageTitle from './CinematicStageTitle'
 export default function CinematicHero({
   stages,
   images,
+  imageScaleFix = {},
   //instruction,
   description,
   background,
@@ -161,21 +162,50 @@ export default function CinematicHero({
     return () => mq.removeEventListener('change', handler)
   }, [])
 
+  const [loadedImages, setLoadedImages] = useState(() => new Set())
+
+  useEffect(() => {
+    if (!images?.length) return
+    images.forEach((src) => {
+      const img = new Image()
+      img.src = src
+      img.decode?.()
+        .then(() => {
+          setLoadedImages((prev) => new Set(prev).add(src))
+        })
+        .catch(() => {
+          // decode() unsupported or failed — fall back to onload
+          img.onload = () => setLoadedImages((prev) => new Set(prev).add(src))
+        })
+    })
+  }, [images])
+
   useEffect(() => {
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current)
     }
   }, [])
 
-  const triggerEffect = () => {
-    setIsEffectActive(true)
+ const advanceStage = () => {
     const totalFrames = Math.max(stages.length, images?.length || 0)
     setCurrentStage((prev) => (prev + 1) % totalFrames)
+  }
+
+  const triggerEffect = () => {
+    setIsEffectActive(true)
+    advanceStage()
 
     if (timeoutRef.current) clearTimeout(timeoutRef.current)
     timeoutRef.current = setTimeout(() => setIsEffectActive(false), 550)
   }
 
+  useEffect(() => {
+    if (prefersReducedMotion) return
+    const interval = setInterval(() => {
+      advanceStage()
+    }, 3000)
+    return () => clearInterval(interval)
+  }, [prefersReducedMotion])
   return (
     <section
       className="relative min-h-[100svh] overflow-hidden bg-black text-white
@@ -193,19 +223,25 @@ export default function CinematicHero({
         )}
       </AnimatePresence>
 
-      <AnimatePresence mode="wait">
-        {activeImage && (
+     <AnimatePresence>
+        {activeImage && loadedImages.has(activeImage) && (
           <motion.div
             key={activeImage}
-            initial={{ opacity: 0, scale: 1.04 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.98 }}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute inset-0 z-0 bg-cover bg-[center_top] sm:bg-center"
-            style={{
-              backgroundImage: `url(${activeImage})`,
-            }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute inset-0 z-0 overflow-hidden"
           >
+           <img
+              src={activeImage}
+              alt=""
+              className="h-full w-full object-cover object-[center_top] sm:object-center"
+              style={{
+                display: 'block',
+                transform: `scale(${imageScaleFix[activeImage] ?? 1})`,
+              }}
+            />
             <div className="absolute inset-0 bg-black/60" />
           </motion.div>
         )}
@@ -226,12 +262,14 @@ export default function CinematicHero({
           rounded-full blur-[70px] opacity-20 ${glow}
           sm:h-[32rem] sm:w-[32rem] sm:blur-[120px] sm:opacity-100
           lg:h-[44rem] lg:w-[44rem] lg:blur-[160px]`}
-      />
+      /> 
 
       <div className="relative z-20 flex min-h-[100svh] items-center justify-center overflow-visible px-4 pb-10 pt-20 sm:px-6 sm:pb-0 sm:pt-24 lg:px-12">
         <div className="mx-auto flex w-full max-w-5xl flex-col items-center justify-evenly gap-6 min-h-[65vh] text-center sm:max-w-6xl sm:min-h-[60vh] sm:justify-center sm:gap-0">
 
-          <CinematicStageTitle title={activeTitle} gradient="from-white via-white to-white/20" />
+         <div className="flex min-h-[90px] items-center justify-center sm:min-h-[150px] lg:min-h-[180px]">
+            <CinematicStageTitle title={activeTitle} gradient="from-white via-white to-white/20" />
+          </div>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
